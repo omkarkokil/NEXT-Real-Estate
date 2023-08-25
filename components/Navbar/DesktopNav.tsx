@@ -22,7 +22,7 @@ const DesktopNav = () => {
     <>
       <nav className="px-4 h-14 w-full fixed left-0 right-0 top-0 text-white  flex items-center justify-between bg-primary shadow-xl ">
         <div id="logo" className={Sansita.className}>
-          <h1 className="text-2xl">Majestic Manors</h1>
+          <h1 className="text-2xl font-semibold">Majestic Manors</h1>
         </div>
         <div id="button" className="flex items-center gap-4">
           {/* <Button onClick={toggleTheme}>

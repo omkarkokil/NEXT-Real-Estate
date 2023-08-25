@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Sansita_Swashed, Roboto } from "next/font/google";
 import { ThemeProvider } from "@/utility/ThemeProvider";
-import HeroSection from "@/components/HeroSection";
+import HeroSection from "@/components/HeroSection/HeroSection";
 
 const Robot = Roboto({ subsets: ["latin"], weight: "400" });
 

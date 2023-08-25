@@ -7,11 +7,11 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const HeroSection = () => {
-  // required hooks and essentials
+  //required hooks and essentials
   const routes = useRoutes();
   const pathname = usePathname();
 
-  // Refs for all tabs
+  //Refs for all tabs
   const tabsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   // condition for getting underline back to the current url tab
@@ -23,7 +23,7 @@ const HeroSection = () => {
     [pathname]
   );
 
-  // states for handling the functionality
+  //states for handling the functionality
   const [hoveredTab, setHoveredTab] = useState<number | null>(currentIndex);
   const [underlineProps, setUnderlineProps] = useState<{
     width: number;
@@ -48,41 +48,43 @@ const HeroSection = () => {
   }, [pathname, currentIndex, hoveredTab]);
 
   return (
-    <div className="flex flex-col px-6 mt-20 py-10 items-center justify-center">
-      <legend
-        className={`text-3xl font-bold truncate tracking-wide ${Sansita.className}`}
-      >
-        Welcome back let's continue the search
-      </legend>
+    <>
+      <section className="flex flex-col px-6 mt-20 py-10 items-center justify-center">
+        <legend
+          className={`text-3xl font-bold truncate tracking-wide ${Sansita.className}`}
+        >
+          Welcome back let's continue the search
+        </legend>
 
-      <div className="py-10  text-sm font-semibold ">
-        <div className="flex items-center w-screen justify-center">
-          {routes.map((tab, id) => (
-            <Link
-              onMouseOver={() => setHoveredTab(id)}
-              onMouseLeave={() => {
-                setHoveredTab(currentIndex);
-              }}
-              className={`px-[20px] py-[10px] cursor-pointer inline-block hover:text-primary ${
-                tab.active && hoveredTab === currentIndex && "text-primary"
-              } `}
-              href={tab.href}
-              key={id}
-              ref={(ref) => (tabsRef.current[id] = ref)}
-            >
-              {tab.label}
-            </Link>
-          ))}
+        <div className="py-10  text-sm font-semibold ">
+          <div className="flex items-center w-screen justify-center">
+            {routes.map((tab, id) => (
+              <Link
+                onMouseOver={() => setHoveredTab(id)}
+                onMouseLeave={() => {
+                  setHoveredTab(currentIndex);
+                }}
+                className={`px-[20px] py-[10px] cursor-pointer inline-block hover:text-primary ${
+                  tab.active && hoveredTab === currentIndex && "text-primary"
+                } `}
+                href={tab.href}
+                key={id}
+                ref={(ref) => (tabsRef.current[id] = ref)}
+              >
+                {tab.label}
+              </Link>
+            ))}
+          </div>
+          <div
+            style={{
+              width: underlineProps.width,
+              transform: `translateX(${underlineProps.offsetLeft}px)`,
+            }}
+            className={`h-[3px] bg-primary transition-transform duration-500 rounded-full`}
+          ></div>
         </div>
-        <div
-          style={{
-            width: underlineProps.width,
-            transform: `translateX(${underlineProps.offsetLeft}px)`,
-          }}
-          className={`h-[3px] bg-primary transition-transform duration-1000 rounded-full`}
-        ></div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 
